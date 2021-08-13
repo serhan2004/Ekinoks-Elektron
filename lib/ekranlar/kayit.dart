@@ -1,4 +1,3 @@
-import 'package:blurred/blurred.dart';
 import 'package:flutter/material.dart';
 
 class Kayitsayfasi extends StatelessWidget {
@@ -9,10 +8,6 @@ class Kayitsayfasi extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          BlurredImage.asset(
-            "assets/images/ist_foto.jpg",
-            blurValue: 2,
-          ),
           Center(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
@@ -20,9 +15,15 @@ class Kayitsayfasi extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: TextFormField(),
+                    Container(
+                      color: Colors.black,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder()),
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),

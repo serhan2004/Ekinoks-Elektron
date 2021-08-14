@@ -18,8 +18,8 @@ class ProfilSayfasi extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                //color: Color.fromARGB(255, 41, 75, 147),
-                color: Colors.blue.shade800,
+                color: Color.fromARGB(255, 41, 75, 147),
+                //color: Colors.blue.shade800,
                 child: Column(
                   children: [
                     Text(
@@ -90,13 +90,19 @@ class ProfilSayfasi extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           height: 80,
                           decoration: BoxDecoration(
-                              color: Colors.deepOrangeAccent.shade400,
+                              color: Color.fromARGB(255, 119, 136, 153),
                               borderRadius: BorderRadius.circular(5)),
                           child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                Icon(Icons.credit_card),
+                                Padding(
+                                  padding: const EdgeInsets.all(14.0),
+                                  child: Icon(
+                                    Icons.credit_card,
+                                    color: Colors.white,
+                                  ),
+                                ),
                                 Text(
                                   " Credit Cards",
                                   style: TextStyle(
@@ -121,7 +127,7 @@ class ProfilSayfasi extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           height: 80,
                           decoration: BoxDecoration(
-                              color: Colors.tealAccent.shade700,
+                              color: Color.fromARGB(255, 119, 136, 153),
                               borderRadius: BorderRadius.circular(5)),
                         ),
                       ),

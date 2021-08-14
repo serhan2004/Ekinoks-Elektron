@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         '/secondRoute': (context) => SecondScreen(),
       },*/
       debugShowCheckedModeBanner: false,
-      home: ProfilSayfasi(),
+      home: GirisEkrani(),
     );
   }
 }

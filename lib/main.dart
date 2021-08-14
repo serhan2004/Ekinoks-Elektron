@@ -1,4 +1,5 @@
 import 'package:ekinoks_elektron/ekranlar/giris.dart';
+import 'package:ekinoks_elektron/ekranlar/karekod.dart';
 import 'package:ekinoks_elektron/ekranlar/kayit.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         '/secondRoute': (context) => SecondScreen(),
       },*/
       debugShowCheckedModeBanner: false,
-      home: GirisEkrani(),
+      home: KarekodSayfasi(),
     );
   }
 }

@@ -1,12 +1,13 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class ProfilSayfasi extends StatelessWidget {
   const ProfilSayfasi({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int currentMoney = 1000;
+    int oldMoney = 5000;
     String _name = "Mark";
     String _surname = "Zuckerberg";
     return SafeArea(
@@ -62,6 +63,25 @@ class ProfilSayfasi extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text("Card Balance"),
+                    ),
+                    SfLinearGauge(
+                      barPointers: [
+                        LinearBarPointer(value: oldMoney.toDouble())
+                      ],
+                      maximum: oldMoney.toDouble(),
+                      markerPointers: [
+                        LinearShapePointer(value: currentMoney.toDouble())
+                      ],
+                      ranges: [
+                        LinearGaugeRange(
+                          startValue: 0,
+                          endValue: currentMoney.toDouble(),
+                        )
+                      ],
+                    ),
+                    Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 20),
                       child: Card(
@@ -72,7 +92,24 @@ class ProfilSayfasi extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.deepOrangeAccent.shade400,
                               borderRadius: BorderRadius.circular(5)),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(Icons.credit_card),
+                                Text(
+                                  " Credit Cards",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.white,
+                                      fontStyle: FontStyle.italic),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
+                        clipBehavior: Clip.antiAlias,
                       ),
                     ),
                     Padding(

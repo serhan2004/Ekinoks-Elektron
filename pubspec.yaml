@@ -25,6 +25,7 @@ dependencies:
   qr_code_dart_scan: ^0.0.2
   cupertino_icons: ^1.0.2
   fluttertoast: ^8.0.8
+  syncfusion_flutter_gauges: ^19.2.55
   flutter:
     sdk: flutter
   glass: ^1.0.1+1

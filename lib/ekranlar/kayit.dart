@@ -1,6 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:glass/glass.dart';
 
 class Kayitsayfasi extends StatelessWidget {
   const Kayitsayfasi({Key? key}) : super(key: key);
@@ -190,7 +189,7 @@ class Kayitsayfasi extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            "Register",
+                            "Sign Up",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -198,6 +197,22 @@ class Kayitsayfasi extends StatelessWidget {
                           ),
                         ),
                       ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Already have an account?",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  letterSpacing: 1.5,
+                                  fontStyle: FontStyle.italic,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w300),
+                            ))
+                      ],
                     ),
                   ],
                 ),

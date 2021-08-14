@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_dart_scan/qr_code_dart_scan.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:glass/glass.dart';
 
 class KarekodSayfasi extends StatefulWidget {
   const KarekodSayfasi({Key? key}) : super(key: key);

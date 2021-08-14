@@ -104,6 +104,21 @@ class GirisEkrani extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "Forgot Password?",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w400,
+                                fontStyle: FontStyle.italic),
+                          ))
+                    ],
+                  ),
                 ],
               ),
             ],

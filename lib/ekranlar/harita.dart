@@ -18,7 +18,7 @@ class _HaritaSayfasiState extends State<HaritaSayfasi> {
       ),
       body: GoogleMap(
         initialCameraPosition:
-            CameraPosition(target: LatLng(41.015137, 28.979530), zoom: 15),
+            CameraPosition(target: LatLng(41.019297, 28.9478024), zoom: 15),
       ),
     );
   }

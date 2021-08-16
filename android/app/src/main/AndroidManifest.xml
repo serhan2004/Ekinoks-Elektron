@@ -3,6 +3,8 @@
    <application
         android:label="ekinoks_elektron"
         android:icon="@mipmap/ic_launcher">
+         <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyA9sE9ip_bZPyS036yt58MwSnugRYkkTFY"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -10,8 +12,7 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
-            <meta-data android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyA9sE9ip_bZPyS036yt58MwSnugRYkkTFY" />
+           
                
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user

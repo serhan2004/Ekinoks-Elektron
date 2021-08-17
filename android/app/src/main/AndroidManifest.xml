@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+   <uses-permission android:name="android.permission.VIBRATE" />
     package="com.example.ekinoks_elektron">
    <application
         android:label="ekinoks_elektron"

@@ -1,6 +1,8 @@
+import 'package:ekinoks_elektron/ekranlar/Kart_ekleme_sayfasi.dart';
 import 'package:ekinoks_elektron/ekranlar/giris.dart';
 import 'package:ekinoks_elektron/ekranlar/harita.dart';
 import 'package:ekinoks_elektron/ekranlar/karekod.dart';
+import 'package:ekinoks_elektron/ekranlar/kart_sayfasi.dart';
 import 'package:ekinoks_elektron/ekranlar/kayit.dart';
 import 'package:ekinoks_elektron/ekranlar/odeme_sayfasi.dart';
 import 'package:ekinoks_elektron/ekranlar/profil_sayfasi.dart';
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
         '/secondRoute': (context) => SecondScreen(),
       },*/
       debugShowCheckedModeBanner: false,
-      home: ProfilSayfasi(),
+      home: KartEklemeSayfasi(),
     );
   }
 }

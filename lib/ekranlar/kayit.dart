@@ -1,13 +1,19 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Kayitsayfasi extends StatelessWidget {
   const Kayitsayfasi({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double _yuvarlanma = 30;
+    TextEditingController? Name;
+    TextEditingController? Surname;
+    TextEditingController? email;
+    TextEditingController? pass;
+    TextEditingController? pass2;
 
+    double _yuvarlanma = 30;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -57,6 +63,7 @@ class Kayitsayfasi extends StatelessWidget {
                                     hintText: "Name",
                                     border: InputBorder.none,
                                   ),
+                                  controller: Name,
                                 ),
                               )),
                           SizedBox(
@@ -83,6 +90,7 @@ class Kayitsayfasi extends StatelessWidget {
                                     hintText: "Surname",
                                     border: InputBorder.none,
                                   ),
+                                  controller: Surname,
                                 ),
                               )),
                         ],
@@ -113,6 +121,7 @@ class Kayitsayfasi extends StatelessWidget {
                                 hintText: "E-mail",
                                 border: InputBorder.none,
                               ),
+                              controller: email,
                             ),
                           )),
                     ),
@@ -142,6 +151,7 @@ class Kayitsayfasi extends StatelessWidget {
                                 hintText: "Password",
                                 border: InputBorder.none,
                               ),
+                              controller: pass,
                             ),
                           )),
                     ),
@@ -171,6 +181,7 @@ class Kayitsayfasi extends StatelessWidget {
                                 hintText: "Password",
                                 border: InputBorder.none,
                               ),
+                              controller: pass2,
                             ),
                           )),
                     ),
@@ -187,13 +198,16 @@ class Kayitsayfasi extends StatelessWidget {
                           color: Colors.black,
                           borderRadius: BorderRadius.circular(_yuvarlanma),
                         ),
-                        child: Center(
-                          child: Text(
-                            "Sign Up",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w300),
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Center(
+                            child: Text(
+                              "Sign Up",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w300),
+                            ),
                           ),
                         ),
                       ),

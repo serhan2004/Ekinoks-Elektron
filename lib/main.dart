@@ -6,9 +6,12 @@ import 'package:ekinoks_elektron/ekranlar/kart_sayfasi.dart';
 import 'package:ekinoks_elektron/ekranlar/kayit.dart';
 import 'package:ekinoks_elektron/ekranlar/odeme_sayfasi.dart';
 import 'package:ekinoks_elektron/ekranlar/profil_sayfasi.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
         '/secondRoute': (context) => SecondScreen(),
       },*/
       debugShowCheckedModeBanner: false,
-      home: ProfilSayfasi(),
+      home: Kayitsayfasi(),
     );
   }
 }

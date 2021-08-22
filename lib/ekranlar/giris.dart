@@ -5,7 +5,6 @@ String img = "assets/images/arkaplan.jpg";
 
 class GirisEkrani extends StatelessWidget {
   const GirisEkrani({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     double _yuvarlanma = 30;

@@ -21,11 +21,11 @@ class MyApp extends StatelessWidget {
       /** 
       * TODO: Named Routes Eklenecek
        routes: {
-        '/': (context) => null,
+        '/': (context)7 => null,
         '/secondRoute': (context) => SecondScreen(),
       },*/
       debugShowCheckedModeBanner: false,
-      home: Kredikartisayfasi(),
+      home: Kayitsayfasi(),
     );
   }
 }

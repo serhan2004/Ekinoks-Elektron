@@ -22,9 +22,11 @@ environment:
 
 dependencies:
   animated_text_kit: ^4.2.1
-  cupertino_icons: ^1.0.2
   awesome_card: ^1.1.5
-
+  cloud_firestore: ^2.5.0
+  cupertino_icons: ^1.0.2
+  firebase_auth: ^3.0.2
+  firebase_core: ^1.5.0
   flutter:
     sdk: flutter
   fluttertoast: ^8.0.8
@@ -44,6 +46,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/arkaplan.jpg
+    - assets/markers/tarihi_marker.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

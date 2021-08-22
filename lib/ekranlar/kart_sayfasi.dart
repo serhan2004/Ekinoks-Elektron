@@ -53,21 +53,25 @@ class _KredikartisayfasiState extends State<Kredikartisayfasi> {
                         : _sayfacevir = false;
                   });
                 },
-                child: CreditCard(
-                  cardNumber: "5450 7879 4864 7854",
-                  cardExpiry: "10/25",
-                  cardHolderName: "Serhan Ergül",
-                  cvv: "123",
-                  bankName: "ElectronBank",
-                  cardType: CardType
-                      .masterCard, // Optional if you want to override Card Type
-                  showBackSide: _sayfacevir,
-                  frontBackground: CardBackgrounds.black,
-                  backBackground: CardBackgrounds.white,
-                  showShadow: true,
-                  textExpDate: 'Skt',
-                  textName: 'Name',
-                  textExpiry: 'MM/YY',
+                child: Row(
+                  children: [
+                    CreditCard(
+                      cardNumber: "5450 7879 4864 7854",
+                      cardExpiry: "10/25",
+                      cardHolderName: "Serhan Ergül",
+                      cvv: "123",
+                      bankName: "ElectronBank",
+                      cardType: CardType
+                          .masterCard, // Optional if you want to override Card Type
+                      showBackSide: _sayfacevir,
+                      frontBackground: CardBackgrounds.black,
+                      backBackground: CardBackgrounds.white,
+                      showShadow: true,
+                      textExpDate: 'Skt',
+                      textName: 'Name',
+                      textExpiry: 'MM/YY',
+                    ),
+                  ],
                 ),
               ),
             ],

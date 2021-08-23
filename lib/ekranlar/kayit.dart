@@ -12,13 +12,12 @@ class Kayitsayfasi extends StatefulWidget {
 
 class _KayitsayfasiState extends State<Kayitsayfasi> {
   var _formanahtari = GlobalKey<FormState>();
-
-  TextEditingController? _name;
-  TextEditingController? _surname;
-  TextEditingController? email;
-  TextEditingController? pass;
-  TextEditingController? _pass2;
-
+  var _name = TextEditingController();
+  var _surname = TextEditingController();
+  var email = TextEditingController();
+  var pass = TextEditingController();
+  String? _email;
+  String? _pass;
   @override
   Widget build(BuildContext context) {
     double _yuvarlanma = 30;
@@ -82,8 +81,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                     ),
                                     onChanged: (var alinanveri) {
                                       setState(() {
-                                        _name = alinanveri
-                                            as TextEditingController?;
+                                        alinanveri = _name.text;
                                       });
                                     },
                                   ),
@@ -121,8 +119,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                     ),
                                     onChanged: (var alinanveri) {
                                       setState(() {
-                                        _surname = alinanveri
-                                            as TextEditingController?;
+                                        alinanveri = _surname.text;
                                       });
                                     },
                                   ),
@@ -148,7 +145,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                 validator: (alinanmail) {
                                   return alinanmail!.contains("@")
                                       ? null
-                                      : "Mail geçersiz";
+                                      : "Invalid Mail";
                                 },
                                 cursorColor: Colors.green,
                                 decoration: InputDecoration(
@@ -163,8 +160,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                 ),
                                 onChanged: (var alinanveri) {
                                   setState(() {
-                                    email =
-                                        alinanveri as TextEditingController?;
+                                    alinanveri = email as String;
                                   });
                                 },
                               ),
@@ -186,7 +182,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
                                 validator: (alinansifre) {
-                                  // return alinansifre?.length.toInt() <= 6 ? null : "En az altı karakter";
+                                  // return alinansifre?.length.toInt() <= 6 ? null : "Enter at least six characters";
                                   if (alinansifre!.length < 6) {
                                     return "En az altı karakter gir";
                                   } else {
@@ -207,7 +203,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                 ),
                                 onChanged: (var alinanveri) {
                                   setState(() {
-                                    pass = alinanveri as TextEditingController?;
+                                    alinanveri = pass as String;
                                   });
                                 },
                               ),
@@ -216,7 +212,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                       SizedBox(
                         height: 15,
                       ),
-                      Padding(
+                      /* Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Container(
                             height: 60,
@@ -229,8 +225,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
                                 validator: (alinansifre2) {
-                                  if (alinansifre2 as TextEditingController ==
-                                      pass) {
+                                  if (alinansifre2 == pass.text) {
                                     return null;
                                   } else {
                                     return "Şifreler farklı";
@@ -250,13 +245,12 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                 ),
                                 onChanged: (var alinanveri) {
                                   setState(() {
-                                    _pass2 =
-                                        alinanveri as TextEditingController?;
+                                    alinanveri = _pass2.text;
                                   });
                                 },
                               ),
                             )),
-                      ),
+                      ),*/
                       SizedBox(
                         height: 5,
                       ),
@@ -317,7 +311,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
       // ignore: unnecessary_statements
       FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-              email: email.toString(), password: pass.toString())
+              email: email.text, password: pass.text)
           .then((user) {})
           .catchError((hata) {
         Fluttertoast.showToast(msg: hata, gravity: ToastGravity.BOTTOM);

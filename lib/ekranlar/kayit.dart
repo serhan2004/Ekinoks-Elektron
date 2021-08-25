@@ -1,7 +1,13 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/material.dart';
+import 'package:ekinoks_elektron/ekranlar/profil_sayfasi.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+FirebaseAuth auth = FirebaseAuth.instance;
 
 class Kayitsayfasi extends StatefulWidget {
   const Kayitsayfasi({Key? key}) : super(key: key);
@@ -14,10 +20,30 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
   var _formanahtari = GlobalKey<FormState>();
   var _name = TextEditingController();
   var _surname = TextEditingController();
-  var email = TextEditingController();
-  var pass = TextEditingController();
-  String? _email;
-  String? _pass;
+  TextEditingController? email;
+  TextEditingController? pass;
+
+  @override
+  void initState() {
+    email = TextEditingController();
+    pass = TextEditingController();
+    auth.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print("Kullanıcı Oturumunu Kapattı");
+      } else {
+        print("Kullanıcı Oturumunu açtı");
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    email?.dispose();
+    pass?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double _yuvarlanma = 30;
@@ -142,28 +168,23 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                validator: (alinanmail) {
-                                  return alinanmail!.contains("@")
-                                      ? null
-                                      : "Invalid Mail";
-                                },
-                                cursorColor: Colors.green,
-                                decoration: InputDecoration(
-                                  hintStyle: TextStyle(
-                                      fontSize: 17,
-                                      color: Colors.grey,
-                                      letterSpacing: 2,
-                                      fontStyle: FontStyle.italic,
-                                      fontWeight: FontWeight.w400),
-                                  hintText: "E-mail",
-                                  border: InputBorder.none,
-                                ),
-                                onChanged: (var alinanveri) {
-                                  setState(() {
-                                    alinanveri = email as String;
-                                  });
-                                },
-                              ),
+                                  validator: (alinanmail) {
+                                    return alinanmail!.contains("@")
+                                        ? null
+                                        : "Invalid Mail";
+                                  },
+                                  cursorColor: Colors.green,
+                                  decoration: InputDecoration(
+                                    hintStyle: TextStyle(
+                                        fontSize: 17,
+                                        color: Colors.grey,
+                                        letterSpacing: 2,
+                                        fontStyle: FontStyle.italic,
+                                        fontWeight: FontWeight.w400),
+                                    hintText: "E-mail",
+                                    border: InputBorder.none,
+                                  ),
+                                  controller: email),
                             )),
                       ),
                       SizedBox(
@@ -201,56 +222,13 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                   hintText: "Password",
                                   border: InputBorder.none,
                                 ),
-                                onChanged: (var alinanveri) {
-                                  setState(() {
-                                    alinanveri = pass as String;
-                                  });
-                                },
+                                controller: pass,
                               ),
                             )),
                       ),
                       SizedBox(
                         height: 15,
                       ),
-                      /* Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Container(
-                            height: 60,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(140, 0, 0, 0),
-                                borderRadius:
-                                    BorderRadius.circular(_yuvarlanma)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextFormField(
-                                validator: (alinansifre2) {
-                                  if (alinansifre2 == pass.text) {
-                                    return null;
-                                  } else {
-                                    return "Şifreler farklı";
-                                  }
-                                },
-                                obscureText: true,
-                                cursorColor: Colors.green,
-                                decoration: InputDecoration(
-                                  hintStyle: TextStyle(
-                                      fontSize: 17,
-                                      color: Colors.grey,
-                                      letterSpacing: 2,
-                                      fontStyle: FontStyle.italic,
-                                      fontWeight: FontWeight.w400),
-                                  hintText: "Password",
-                                  border: InputBorder.none,
-                                ),
-                                onChanged: (var alinanveri) {
-                                  setState(() {
-                                    alinanveri = _pass2.text;
-                                  });
-                                },
-                              ),
-                            )),
-                      ),*/
                       SizedBox(
                         height: 5,
                       ),
@@ -265,7 +243,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                             borderRadius: BorderRadius.circular(_yuvarlanma),
                           ),
                           child: GestureDetector(
-                            onTap: kayitEkle,
+                            onTap: _emailSifreKullanicisi,
                             child: Center(
                               child: Text(
                                 "Sign Up",
@@ -305,17 +283,28 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
     );
   }
 
-  void kayitEkle() {
-    if (_formanahtari.currentState!.validate()) {
-      Fluttertoast.showToast(msg: "Kayit Basarili");
-      // ignore: unnecessary_statements
-      FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: email.text, password: pass.text)
-          .then((user) {})
-          .catchError((hata) {
-        Fluttertoast.showToast(msg: hata, gravity: ToastGravity.BOTTOM);
-      });
+  void _emailSifreKullanicisi() async {
+    try {
+      UserCredential _credential = await auth.createUserWithEmailAndPassword(
+          email: email!.text, password: pass!.text);
+      User? yeniUser = _credential.user;
+      yeniUser!.sendEmailVerification();
+      /*
+      if (yeniUser.emailVerified == true) {
+        print("Emaili doğrulanmış");
+      } else {
+        print("Emaili Doğrulanmamış");
+        auth.signOut();
+      } */
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ProfilSayfasi()));
+      Fluttertoast.showToast(
+          msg: "Verify your email",
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: Colors.green);
+      HapticFeedback.lightImpact();
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 }

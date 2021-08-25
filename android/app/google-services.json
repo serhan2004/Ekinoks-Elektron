@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "812962982885",
-    "project_id": "ekinoks-elektron-5a235",
-    "storage_bucket": "ekinoks-elektron-5a235.appspot.com"
+    "project_number": "1014676263454",
+    "project_id": "ekinoks-e178b",
+    "storage_bucket": "ekinoks-e178b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:812962982885:android:fd251455001affd00ddd0c",
+        "mobilesdk_app_id": "1:1014676263454:android:6a0487e3403a026987d40f",
         "android_client_info": {
           "package_name": "com.example.ekinoks_elektron"
         }
       },
       "oauth_client": [
         {
-          "client_id": "812962982885-6egaol396r3o0h0n5v6m264v6oa2u7e9.apps.googleusercontent.com",
+          "client_id": "1014676263454-65h798l3covuq23fc3lsda0u26mbhg6v.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBGrg1cPbqUeDjy-U8GeVzSqAY9ZDA76b8"
+          "current_key": "AIzaSyAYHaHAIzkZusFWgNB4wv9RX9UcSAirpCc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "812962982885-6egaol396r3o0h0n5v6m264v6oa2u7e9.apps.googleusercontent.com",
+              "client_id": "1014676263454-65h798l3covuq23fc3lsda0u26mbhg6v.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

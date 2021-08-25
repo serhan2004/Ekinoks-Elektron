@@ -1,3 +1,4 @@
+import 'package:ekinoks_elektron/ekranlar/kayit.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -119,19 +120,28 @@ class ProfilSayfasi extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 20),
-                      child: Card(
-                        elevation: 10,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 80,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 145, 163, 176),
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Containericerik("Buraya Bir şeyler eklenecek",
-                              Icon(Icons.access_alarm)),
+                    GestureDetector(
+                      onTap: () {
+                        auth.signOut();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Kayitsayfasi()));
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
+                        child: Card(
+                          elevation: 10,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 80,
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 145, 163, 176),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Containericerik(
+                                "SignOut", Icon(Icons.exit_to_app_rounded)),
+                          ),
                         ),
                       ),
                     ),
@@ -152,7 +162,10 @@ class ProfilSayfasi extends StatelessWidget {
 class Containericerik extends StatelessWidget {
   String _yazi;
   Icon _icon;
-  Containericerik(this._yazi, this._icon);
+  Containericerik(
+    this._yazi,
+    this._icon,
+  );
   @override
   Widget build(BuildContext context) {
     return Center(

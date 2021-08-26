@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:ekinoks_elektron/ekranlar/giris.dart';
 import 'package:ekinoks_elektron/ekranlar/profil_sayfasi.dart';
+import 'package:ekinoks_elektron/firebaseislemleri/firebaseislemleri.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +20,9 @@ class Kayitsayfasi extends StatefulWidget {
 
 class _KayitsayfasiState extends State<Kayitsayfasi> {
   var _formanahtari = GlobalKey<FormState>();
-  var _name = TextEditingController();
-  var _surname = TextEditingController();
+  TextEditingController? _name;
+  TextEditingController? _surname;
+
   TextEditingController? email;
   TextEditingController? pass;
 
@@ -28,6 +30,9 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
   void initState() {
     email = TextEditingController();
     pass = TextEditingController();
+    _name = TextEditingController();
+    _surname = TextEditingController();
+
     auth.authStateChanges().listen((User? user) {
       if (user == null) {
         print("Kullanıcı Oturumunu Kapattı");
@@ -42,6 +47,8 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
   void dispose() {
     email?.dispose();
     pass?.dispose();
+    _surname?.dispose();
+    _name?.dispose();
     super.dispose();
   }
 
@@ -88,6 +95,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextFormField(
+                                    style: TextStyle(color: Colors.white),
                                     validator: (alinanisim) {
                                       if (alinanisim!.length < 3) {
                                         return "Can't be shorter than three letters";
@@ -106,11 +114,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                       hintText: "Name",
                                       border: InputBorder.none,
                                     ),
-                                    onChanged: (var alinanveri) {
-                                      setState(() {
-                                        alinanveri = _name.text;
-                                      });
-                                    },
+                                    controller: _name,
                                   ),
                                 )),
                             SizedBox(
@@ -126,6 +130,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextFormField(
+                                    style: TextStyle(color: Colors.white),
                                     validator: (alinansurname) {
                                       if (alinansurname!.length < 3) {
                                         return "Can't be shorter than three letters";
@@ -144,11 +149,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                                       hintText: "Surname",
                                       border: InputBorder.none,
                                     ),
-                                    onChanged: (var alinanveri) {
-                                      setState(() {
-                                        alinanveri = _surname.text;
-                                      });
-                                    },
+                                    controller: _surname,
                                   ),
                                 )),
                           ],
@@ -169,6 +170,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
+                                  style: TextStyle(color: Colors.white),
                                   validator: (alinanmail) {
                                     return alinanmail!.contains("@")
                                         ? null
@@ -203,6 +205,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
+                                style: TextStyle(color: Colors.white),
                                 validator: (alinansifre) {
                                   // return alinansifre?.length.toInt() <= 6 ? null : "Enter at least six characters";
                                   if (alinansifre!.length < 6) {
@@ -291,11 +294,17 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
 
   void _emailSifreKullanicisi() async {
     try {
+      String String_name = _name!.text.toString();
+      String String_surnamename = _surname!.text.toString();
+      String String_email = email!.text.toString();
+
       UserCredential _credential = await auth.createUserWithEmailAndPassword(
           email: email!.text, password: pass!.text);
       User? yeniUser = _credential.user;
       yeniUser!.sendEmailVerification();
+      FirebasekayitEkle(String_name, String_surnamename, String_email);
       /*
+
       if (yeniUser.emailVerified == true) {
         print("Emaili doğrulanmış");
       } else {

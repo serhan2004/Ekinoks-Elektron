@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekinoks_elektron/ekranlar/Kart_ekleme_sayfasi.dart';
 import 'package:ekinoks_elektron/ekranlar/giris.dart';
 import 'package:ekinoks_elektron/ekranlar/harita.dart';
@@ -9,6 +10,7 @@ import 'package:ekinoks_elektron/ekranlar/profil_sayfasi.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+final FirebaseFirestore firestore = FirebaseFirestore.instance;
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {

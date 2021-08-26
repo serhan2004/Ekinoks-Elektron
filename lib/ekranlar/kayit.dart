@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:ekinoks_elektron/ekranlar/giris.dart';
 import 'package:ekinoks_elektron/ekranlar/profil_sayfasi.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -260,7 +261,12 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => GirisEkrani()));
+                              },
                               child: Text(
                                 "Already have an account?",
                                 style: TextStyle(

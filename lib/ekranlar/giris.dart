@@ -1,10 +1,14 @@
+import 'package:ekinoks_elektron/ekranlar/kayit.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 String img = "assets/images/arkaplan.jpg";
 
 class GirisEkrani extends StatelessWidget {
-  const GirisEkrani({Key? key}) : super(key: key);
+  TextEditingController? _email;
+  TextEditingController? _pass;
   @override
   Widget build(BuildContext context) {
     double _yuvarlanma = 30;
@@ -50,6 +54,7 @@ class GirisEkrani extends StatelessWidget {
                               hintText: "E-mail",
                               border: InputBorder.none,
                             ),
+                            controller: _email,
                           ),
                         )),
                   ),
@@ -67,6 +72,7 @@ class GirisEkrani extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
+                            controller: _pass,
                             obscureText: true,
                             cursorColor: Colors.green,
                             decoration: InputDecoration(
@@ -85,20 +91,26 @@ class GirisEkrani extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 40, horizontal: 100),
-                    child: Container(
-                      width: 200,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(_yuvarlanma),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Login Up",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w300),
+                    child: GestureDetector(
+                      onTap: () {
+                        _girisYap();
+                        HapticFeedback.lightImpact();
+                      },
+                      child: Container(
+                        width: 200,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(_yuvarlanma),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Login Up",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w300),
+                          ),
                         ),
                       ),
                     ),
@@ -107,9 +119,11 @@ class GirisEkrani extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           child: Text(
-                            "Forgot Password?",
+                            "Register Page?",
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.grey,
@@ -125,5 +139,15 @@ class GirisEkrani extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _girisYap() async {
+    if (auth.currentUser == null) {
+      await auth.signInWithEmailAndPassword(
+          email: _email!.text, password: _pass!.text);
+    } else {
+      Fluttertoast.showToast(
+          msg: "You Already Logined", backgroundColor: Colors.green);
+    }
   }
 }

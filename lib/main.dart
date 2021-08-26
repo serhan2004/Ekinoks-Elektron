@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         } else if (snapshot.hasData) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: Kayitsayfasi(),
+            home: _kayitKontrol(),
           );
         } else {
           return MaterialApp(
@@ -39,5 +39,13 @@ class MyApp extends StatelessWidget {
         }
       },
     );
+  }
+}
+
+Widget? _kayitKontrol() {
+  if (auth.currentUser == null) {
+    return Kayitsayfasi();
+  } else {
+    return ProfilSayfasi();
   }
 }

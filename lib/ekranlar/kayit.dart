@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:ekinoks_elektron/ekranlar/giris.dart';
+import 'package:ekinoks_elektron/ekranlar/isletme/isletmekayit.dart';
 import 'package:ekinoks_elektron/ekranlar/profil_sayfasi.dart';
 import 'package:ekinoks_elektron/firebaseislemleri/firebaseislemleri.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,6 +26,7 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
 
   TextEditingController? email;
   TextEditingController? pass;
+  bool _isletme_mi = false;
 
   @override
   void initState() {
@@ -236,6 +238,14 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
                       SizedBox(
                         height: 5,
                       ),
+                      Text("Are you a business?"),
+                      Switch(
+                          value: _isletme_mi,
+                          onChanged: (val) {
+                            setState(() {
+                              _isletme_mi = val;
+                            });
+                          }),
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 40, horizontal: 100),
@@ -297,12 +307,13 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
       String String_name = _name!.text.toString();
       String String_surnamename = _surname!.text.toString();
       String String_email = email!.text.toString();
-
+      bool Isletme_Mi = _isletme_mi;
       UserCredential _credential = await auth.createUserWithEmailAndPassword(
           email: email!.text, password: pass!.text);
       User? yeniUser = _credential.user;
       yeniUser!.sendEmailVerification();
-      FirebasekayitEkle(String_name, String_surnamename, String_email);
+      FirebasekayitEkle(
+          String_name, String_surnamename, String_email, Isletme_Mi);
       /*
 
       if (yeniUser.emailVerified == true) {
@@ -311,8 +322,14 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
         print("Emaili Doğrulanmamış");
         auth.signOut();
       } */
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => ProfilSayfasi()));
+      if (_isletme_mi == true) {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => IsletmeKayit()),
+            (route) => false);
+      } else {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ProfilSayfasi()));
+      }
       Fluttertoast.showToast(
           msg: "Verify your email",
           gravity: ToastGravity.BOTTOM,

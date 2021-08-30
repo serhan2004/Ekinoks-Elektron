@@ -3,7 +3,7 @@ class Urun {
   String UrunAdi;
   DateTime UretimTarihi;
   DateTime STT;
-  double UurunFiyat;
-  Urun(this.UurunFiyat, this.UrunAdi, this.Kategori, this.UretimTarihi,
-      this.STT);
+  double UrunFiyat;
+  Urun(
+      this.UrunFiyat, this.UrunAdi, this.Kategori, this.UretimTarihi, this.STT);
 }

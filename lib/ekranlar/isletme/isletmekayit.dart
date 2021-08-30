@@ -49,8 +49,14 @@ class _IsletmeKayitState extends State<IsletmeKayit> {
         body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(),
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                cursorColor: Colors.black,
+                decoration: InputDecoration(
+                  labelText: "Store Name",
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ),
           ],
         ),

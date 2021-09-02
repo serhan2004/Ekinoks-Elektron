@@ -56,7 +56,7 @@ class _KredikartisayfasiState extends State<Kredikartisayfasi> {
                 child: Row(
                   children: [
                     CreditCard(
-                      cardNumber: "5450 7879 4864 7854",
+                      cardNumber: "5450 7879 464 7854",
                       cardExpiry: "10/25",
                       cardHolderName: "Serhan Ergül",
                       cvv: "123",

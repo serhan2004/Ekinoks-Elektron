@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
 
 Widget? _kayitKontrol() {
   if (auth.currentUser == null) {
-    return IsletmeKayit();
+    return Kayitsayfasi();
   } else {
     return ProfilSayfasi();
   }

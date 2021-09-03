@@ -317,7 +317,6 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
       FirebasekayitEkle(
           String_name, String_surnamename, String_email, Isletme_Mi);
       /*
-
       if (yeniUser.emailVerified == true) {
         print("Emaili doğrulanmış");
       } else {

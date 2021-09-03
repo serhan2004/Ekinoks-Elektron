@@ -19,13 +19,15 @@ class Kayitsayfasi extends StatefulWidget {
   _KayitsayfasiState createState() => _KayitsayfasiState();
 }
 
+TextEditingController? _name;
+TextEditingController? _surname;
+
+TextEditingController? email;
+TextEditingController? pass;
+
 class _KayitsayfasiState extends State<Kayitsayfasi> {
   var _formanahtari = GlobalKey<FormState>();
-  TextEditingController? _name;
-  TextEditingController? _surname;
 
-  TextEditingController? email;
-  TextEditingController? pass;
   bool _isletme_mi = false;
 
   @override
@@ -324,7 +326,9 @@ class _KayitsayfasiState extends State<Kayitsayfasi> {
       } */
       if (_isletme_mi == true) {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => IsletmeKayit()),
+            MaterialPageRoute(
+                builder: (context) =>
+                    IsletmeKayit(String_name, String_surnamename)),
             (route) => false);
       } else {
         Navigator.push(

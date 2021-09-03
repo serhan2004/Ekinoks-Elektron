@@ -1,36 +1,43 @@
 import 'package:ekinoks_elektron/ekranlar/isletme/isletme_urunleri.dart';
 import 'package:flutter/material.dart';
 
+TextEditingController? _magazaKonum;
+TextEditingController? _tckimlik;
+TextEditingController? _magazailtisim;
+TextEditingController? _magazahakkinda;
+TextEditingController? _magazaisim;
+
 class IsletmeKayit extends StatefulWidget {
-  const IsletmeKayit({Key? key}) : super(key: key);
+  String? isim;
+  String? soyisim;
+
+  IsletmeKayit(this.isim, this.soyisim);
 
   @override
   _IsletmeKayitState createState() => _IsletmeKayitState();
 }
 
 class _IsletmeKayitState extends State<IsletmeKayit> {
-  TextEditingController? _urunAdi;
-  TextEditingController? _urunKategori;
-  TextEditingController? _urunUretimTarihi;
-  TextEditingController? _urunSkt;
-  TextEditingController? _urunFiyat;
   @override
   void initState() {
-    _urunAdi = TextEditingController();
-    _urunKategori = TextEditingController();
-    _urunFiyat = TextEditingController();
-    _urunUretimTarihi = TextEditingController();
-    _urunSkt = TextEditingController();
+    _magazaKonum = TextEditingController();
+    _tckimlik = TextEditingController();
+    _magazaisim = TextEditingController();
+    _magazailtisim = TextEditingController();
+    _magazahakkinda = TextEditingController();
+    String? isim;
+    String? soyisim;
+
     super.initState();
   }
 
   @override
   void dispose() {
-    _urunAdi?.dispose();
-    _urunFiyat?.dispose();
-    _urunKategori?.dispose();
-    _urunSkt?.dispose();
-    _urunUretimTarihi?.dispose();
+    _magazaKonum?.dispose();
+    _magazaisim?.dispose();
+    _tckimlik?.dispose();
+    _magazahakkinda?.dispose();
+    _magazailtisim?.dispose();
     super.dispose();
   }
 
@@ -53,7 +60,37 @@ class _IsletmeKayitState extends State<IsletmeKayit> {
               child: TextField(
                 cursorColor: Colors.black,
                 decoration: InputDecoration(
-                  labelText: "Store Name",
+                  labelText: "Mağaza Adın",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                cursorColor: Colors.black,
+                decoration: InputDecoration(
+                  labelText: "Mağaza Adresin",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                cursorColor: Colors.black,
+                decoration: InputDecoration(
+                  labelText: "TC kimlik Numaran",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                cursorColor: Colors.black,
+                decoration: InputDecoration(
+                  labelText: "Mağaza Kategorin",
                   border: OutlineInputBorder(),
                 ),
               ),

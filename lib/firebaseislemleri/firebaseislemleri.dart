@@ -6,5 +6,8 @@ void FirebasekayitEkle(var isim, var soyisim, var emaill, bool isletmemi) {
   kisiekle["soy_isim"] = soyisim;
   kisiekle["email"] = emaill;
   kisiekle["Isletme_Mi"] = isletmemi;
-  firestore.collection("Users").doc(isim + soyisim).set(kisiekle);
+  if (isletmemi == false)
+    firestore.collection("Users").doc(isim + soyisim).set(kisiekle);
+  if (isletmemi == true)
+    firestore.collection("Stores").doc(isim + soyisim).set(kisiekle);
 }

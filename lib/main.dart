@@ -11,6 +11,8 @@ import 'package:ekinoks_elektron/ekranlar/profil_sayfasi.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'ekranlar/harita.dart';
+
 final FirebaseFirestore firestore = FirebaseFirestore.instance;
 void main() => runApp(MyApp());
 
